@@ -1,0 +1,30 @@
+{
+    "name": "Tails Extension",
+    "description": "",
+    "dependencies": {
+        "device": "*",
+        "arcade-sprite-util": "github:jwunderl/arcade-sprite-util#v0.4.1",
+        "arcade-character-animations": "github:microsoft/arcade-character-animations#v0.0.2"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "assets.json"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v1.12.58",
+        "tag": "v1.12.58",
+        "commits": "https://github.com/microsoft/pxt-arcade/commits/584edd3155f56d4d2465bddaa067b5e48a37c430",
+        "target": "1.12.58",
+        "pxt": "8.5.69",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj"
+}
