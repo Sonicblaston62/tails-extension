@@ -1,11 +1,11 @@
 namespace trailEffect {
-    //% blockId=trail_create block="create trail for %Follow=variables_get(mySprite) with image %Image2=screen_image_picker and speed %Speed"
-    //% Speed.defl=100
+    //% blockId=trail_create block="create trail for %Follow=variables_get(mySprite) with image %Image2=screen_image_picker"
     //% group="Effects"
-    export function createTrail(Follow: Sprite, Image2: Image, Speed: number) {
+    export function createTrail(Follow: Sprite, Image2: Image) {
         Follow.z = 100
         let trailSprites: Sprite[] = []
         let scaleFactor = -0.05
+        let speed = 100 // Default follow speed
 
         for (let i = 0; i < 16; i++) {
             let trail = sprites.create(Image2, SpriteKind.create())
@@ -15,9 +15,9 @@ namespace trailEffect {
         }
 
         // Set follow chain
-        trailSprites[0].follow(Follow, Speed)
+        trailSprites[0].follow(Follow, speed)
         for (let j = 1; j < trailSprites.length; j++) {
-            trailSprites[j].follow(trailSprites[j - 1], Speed)
+            trailSprites[j].follow(trailSprites[j - 1], speed)
         }
 
         // Make all trail sprites ghost (no collisions)
