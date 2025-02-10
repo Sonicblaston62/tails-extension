@@ -1,3 +1,4 @@
+    //% weight=100 color=#ff8000 icon="\uf021" block="Trail Effect"
 namespace trailEffect {
     //% blockId=trail_create block="create trail for %Follow=variables_get(mySprite) with image %Image2=screen_image_picker"
     //% group="Effects"
