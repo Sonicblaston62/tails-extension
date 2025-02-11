@@ -1,1 +1,35 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><block type="pxt-on-start" id="uEg3K8=f%JGqvy3sqtnn" x="0" y="0"><statement name="HANDLER"><block type="typescript_statement" id="|jsj`,^[$I1M5:[!FSnY" editable="false"><mutation xmlns="http://www.w3.org/1999/xhtml" line0="namespace trailEffect {" line1="    //% blockId=trail_create block=&quot;create trail for %Follow=variables_get(mySprite) with image %Image2=screen_image_picker&quot;" line2="    //% group=&quot;Effects&quot;" line3="    export function createTrail(Follow: Sprite, Image2: Image) {" line4="        Follow.z = 100" line5="        let trailSprites: Sprite[] = []" line6="        let scaleFactor = -0.05" line7="        let speed = 100 // Default follow speed" line8="" line9="        for (let i = 0; i &lt; 16; i++) {" line10="            let trail = sprites.create(Image2, SpriteKind.create())" line11="            trail.changeScale(scaleFactor * i, ScaleAnchor.Middle)" line12="            trail.z = 100 - (i + 1) * 5" line13="            trailSprites.push(trail)" line14="        }" line15="" line16="        // Set follow chain" line17="        trailSprites[0].follow(Follow, speed)" line18="        for (let j = 1; j &lt; trailSprites.length; j++) {" line19="            trailSprites[j].follow(trailSprites[j - 1], speed)" line20="        }" line21="" line22="        // Make all trail sprites ghost (no collisions)" line23="        for (let trail2 of trailSprites) {" line24="            trail2.setFlag(SpriteFlag.Ghost, true)" line25="        }" line26="    }" line27="}" numlines="28"></mutation></block></statement></block></xml>
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="Sikvz#?l9GFK-D=0j;wm">mySprite</variable><variable type="KIND_SpriteKind" id="{YsmYMx@@DCGKU9dDbmi">Player</variable><variable type="KIND_SpriteKind" id="[%,twyboi112lXe|mQNV">Projectile</variable><variable type="KIND_SpriteKind" id="SizLX0g{Ed8ZPH3IMrkY">Food</variable><variable type="KIND_SpriteKind" id="?^doxf-0/IwzWF2iA:@t">Enemy</variable></variables><block type="pxt-on-start" id="LNN`Oy6m7e$$Zqzlw6=q" x="0" y="0"><statement name="HANDLER"><block type="typescript_statement" id="}5*x^ACTQeIGXz4|t?nv" editable="false"><mutation xmlns="http://www.w3.org/1999/xhtml" line0="namespace trailEffect {" line1="    //% blockId=trail_create block=&quot;create trail for %Follow=variables_get(mySprite) with image %Image2=screen_image_picker speed %Speed and %Amount trails&quot;" line2="    //% Speed.defl=100 Amount.defl=10 Amount.min=1 Amount.max=50" line3="    //% group=&quot;Effects&quot;" line4="    export function createTrail(Follow: Sprite, Image2: Image, Speed: number, Amount: number) {" line5="        Follow.z = 100" line6="        let trailSprites: Sprite[] = []" line7="        let scaleFactor = -0.05" line8="        let speedFactor = Math.map(Amount, 1, 50, 1, 0.3) // Decrease speed factor when more sprites exist" line9="" line10="        for (let i = 0; i &lt; Amount; i++) {" line11="            let trail = sprites.create(Image2, SpriteKind.create())" line12="            trail.changeScale(scaleFactor * i, ScaleAnchor.Middle)" line13="            trail.z = 100 - (i + 1) * 5" line14="            trailSprites.push(trail)" line15="        }" line16="" line17="        // Set follow chain with increased spacing for more sprites" line18="        if (trailSprites.length &gt; 0) {" line19="            trailSprites[0].follow(Follow, Speed)" line20="            for (let j = 1; j &lt; trailSprites.length; j++) {" line21="                let adjustedSpeed = Speed * (speedFactor + (j / Amount) * (1 - speedFactor)) // Spread out the spacing dynamically" line22="                trailSprites[j].follow(trailSprites[j - 1], adjustedSpeed)" line23="            }" line24="        }" line25="" line26="        // Make all trail sprites ghost (no collisions)" line27="        for (let trail2 of trailSprites) {" line28="            trail2.setFlag(SpriteFlag.Ghost, true)" line29="        }" line30="    }" line31="}" numlines="32"></mutation><next><block type="variables_set" id="80~+XM??@m7Y:}CN`Kv;"><field name="VAR" id="Sikvz#?l9GFK-D=0j;wm">mySprite</field><value name="VALUE"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="1kT2yvSH:)kt9d,MqiWn"><value name="img"><shadow type="screen_image_picker" id="nn2HKo]Iy0z:SVJhkFRN"><field name="img">img`
+. . 2 2 b b b b b . . . . . . . 
+. 2 b 4 4 4 4 4 4 b . . . . . . 
+2 2 4 4 4 4 d d 4 4 b . . . . . 
+2 b 4 4 4 4 4 4 d 4 b . . . . . 
+2 b 4 4 4 4 4 4 4 d 4 b . . . . 
+2 b 4 4 4 4 4 4 4 4 4 b . . . . 
+2 b 4 4 4 4 4 4 4 4 4 e . . . . 
+2 2 b 4 4 4 4 4 4 4 b e . . . . 
+. 2 b b b 4 4 4 b b b e . . . . 
+. . e b b b b b b b e e . . . . 
+. . . e e b 4 4 b e e e b . . . 
+. . . . . e e e e e e b d b b . 
+. . . . . . . . . . . b 1 1 1 b 
+. . . . . . . . . . . c 1 d d b 
+. . . . . . . . . . . c 1 b c . 
+. . . . . . . . . . . . c c . . 
+`</field><data>{"commentRefs":[],"fieldData":{"img":null}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="+IK]2X.%D7YwAtdE?)Ts"><field name="MEMBER">Player</field></shadow></value></block></value><next><block type="game_control_sprite" id=";X[RpctDBvoRI=H?HvBL"><mutation xmlns="http://www.w3.org/1999/xhtml" _expanded="2" _input_init="true"></mutation><value name="sprite"><shadow type="variables_get" id="8v_/6wy~.-ozLZsdyE=m"><field name="VAR" id="Sikvz#?l9GFK-D=0j;wm">mySprite</field></shadow></value><value name="vx"><shadow type="spriteSpeedPicker" id="jq84_/(n0pm$LudE3+;D"><field name="speed">100</field></shadow></value><value name="vy"><shadow type="spriteSpeedPicker" id="~KKUkg0z3^Rhm,k!aW/m"><field name="speed">100</field></shadow></value><next><block type="trail_create" id="=FK5BV]ehXK3eIFam4z7"><value name="Follow"><shadow type="variables_get" id="wi=J+|t6A*f/c,Ntw=V:"><field name="VAR" id="Sikvz#?l9GFK-D=0j;wm">mySprite</field></shadow></value><value name="Image2"><shadow type="screen_image_picker" id="q$)Rk6,u?VgG9_Vc|~pZ"><field name="img">img`
+. . 2 2 b b b b b . . . . . . . 
+. 2 b 4 4 4 4 4 4 b . . . . . . 
+2 2 4 4 4 4 d d 4 4 b . . . . . 
+2 b 4 4 4 4 4 4 d 4 b . . . . . 
+2 b 4 4 4 4 4 4 4 d 4 b . . . . 
+2 b 4 4 4 4 4 4 4 4 4 b . . . . 
+2 b 4 4 4 4 4 4 4 4 4 e . . . . 
+2 2 b 4 4 4 4 4 4 4 b e . . . . 
+. 2 b b b 4 4 4 b b b e . . . . 
+. . e b b b b b b b e e . . . . 
+. . . e e b 4 4 b e e e b . . . 
+. . . . . e e e e e e b d b b . 
+. . . . . . . . . . . b 1 1 1 b 
+. . . . . . . . . . . c 1 d d b 
+. . . . . . . . . . . c 1 b c . 
+. . . . . . . . . . . . c c . . 
+`</field><data>{"commentRefs":[],"fieldData":{"img":null}}</data></shadow></value><value name="Speed"><shadow type="math_number" id="0N^$4qXUgh@Ppo?V},ZF"><field name="NUM">100</field></shadow></value><value name="Amount"><shadow type="math_number_minmax" id="h*AJQ%nd!b*AqLRF|_=)"><mutation min="1" max="50" label="Number" precision="0"></mutation><field name="SLIDER">100</field></shadow></value></block></next></block></next></block></next></block></statement></block></xml>
