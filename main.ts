@@ -1,4 +1,3 @@
-//% weight=100 color=#ff8000 icon="\uf021" block="Trail Effect"
 namespace trailEffect {
     //% blockId=trail_create block="create trail for %Follow=variables_get(mySprite) with image %Image2=screen_image_picker speed %Speed and %Amount trails"
     //% Speed.defl=100 Amount.defl=10 Amount.min=1 Amount.max=20
@@ -15,21 +14,25 @@ namespace trailEffect {
             trailSprites.push(trail)
         }
 
-        // Set follow chain
-        if (trailSprites.length > 0) {
+        if (Speed > 0) {
+            // If speed > 0, make the trail follow
             trailSprites[0].follow(Follow, Speed)
-            for (let i = 1; i < trailSprites.length; i++) {
-                trailSprites[i].follow(trailSprites[i - 1], Speed)
+            for (let j = 1; j < trailSprites.length; j++) {
+                trailSprites[j].follow(trailSprites[j - 1], Speed)
+            }
+        } else {
+            // If speed is 0, position them manually instead
+            for (let k = 0; k < trailSprites.length; k++) {
+                trailSprites[k].setPosition(Follow.x - (k * 2), Follow.y - (k * 2))
             }
         }
 
         // Make all trail sprites ghost (no collisions)
-        for (let trail of trailSprites) {
-            trail.setFlag(SpriteFlag.Ghost, true)
+        for (let trail2 of trailSprites) {
+            trail2.setFlag(SpriteFlag.Ghost, true)
         }
     }
 }
-
 let mySprite = sprites.create(img`
     . . 2 2 b b b b b . . . . . . . 
     . 2 b 4 4 4 4 4 4 b . . . . . . 
@@ -69,6 +72,6 @@ img`
     . . . . . . . . . . . c 1 b c . 
     . . . . . . . . . . . . c c . . 
     `,
-100,
-100
+0,
+10
 )
